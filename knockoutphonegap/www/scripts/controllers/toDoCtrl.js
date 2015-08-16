@@ -1,40 +1,19 @@
 ﻿(function () {
     'use strict';
 
-    angular.module("xPlat.controllers").controller('ToDoCtrl', ['maps', 'storage', ToDoCtrl]);
+    angular.module("xPlat.controllers").controller('ToDoCtrl', ['storage', ToDoCtrl]);
 
     /**
      * Controller for the todo list.
      * 
-     * @param {!angular.Service} maps
      * @param {!angular.Service} storage
      * @constructor
      * @export
      */
-    function ToDoCtrl(maps, storage) {
-        this.maps = maps;
+    function ToDoCtrl(storage) {
         this.storage = storage;
         this.todos = storage.getAll();
-
-        this.updateAddress = function (toDoItem) {
-            var _this = this;
-
-            return this.maps.getCurrentPosition()
-                .then(_this.maps.getAddressFromPosition.bind(_this.maps), function (error) { return error.message; })
-                .then(function (address) {
-                    toDoItem.address = address;
-                    return _this.storage.update(toDoItem);
-                }, function (errorMessage) {
-                    toDoItem.address = errorMessage;
-                    return _this.storage.update(toDoItem);
-                });
-        }
     }
-
-    /**
-     * Update the item location with an address.
-     * @param toDoItem
-     */
 
     /**
      * Add a todo item to the list.
@@ -48,19 +27,18 @@
         };
 
         this.newToDoText = '';
-        this.storage.create(text, 'Getting location...')
+        this.storage.create(text)
             .then(function (todo) {
                 _this.todos.push(todo);
                 return todo;
-            }).then(this.updateAddress.bind(this));
+            });
     };
 
     /**
      * Update the text of a todo item.
      */
     ToDoCtrl.prototype.changeToDoText = function (toDoItem) {
-        this.storage.update(toDoItem)
-            .then(this.updateAddress.bind(this))
+        this.storage.update(toDoItem);
     };
 
     /**

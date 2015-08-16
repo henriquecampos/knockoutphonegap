@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('xPlat.services').service('localStorage', ['$q', '$window', 'guidGenerator', LocalStorage]);
+    angular.module('AngularAuthApp.services').service('localStorage', ['$q', '$window', 'guidGenerator', LocalStorage]);
 
     /**
      * Local storage service.
@@ -51,11 +51,10 @@
      * @param {string} text Text of the todo item.
      * @param {string} address Address of the todo item.
      */
-    LocalStorage.prototype.create = function (text, address) {
+    LocalStorage.prototype.create = function (text) {
         var item = {
             id: this.guidGenerator.get(),
             text: text,
-            address: address,
             done: false
         }
         var items = this.loadFromStorage();

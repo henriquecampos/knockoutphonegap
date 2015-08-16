@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('xPlat.services').factory('cordova', ['$q', '$window', '$timeout', cordova]);
+    angular.module('AngularAuthApp.services').factory('cordova', ['$q', '$window', '$timeout', cordova]);
 
     /**
      * Service that allows access to Cordova when it is ready.

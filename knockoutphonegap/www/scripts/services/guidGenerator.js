@@ -1,5 +1,5 @@
 ﻿(function () {
-    angular.module('xPlat.services').service('guidGenerator', GuidGenerator);
+    angular.module('AngularAuthApp.services').service('guidGenerator', GuidGenerator);
 
     /**
      * Generates a GUID to use as an ID for the todos
