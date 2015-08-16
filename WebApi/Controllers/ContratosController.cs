@@ -14,6 +14,7 @@ namespace WebApi.Controllers
     {
         // Get /Contratos
         [Route("")]
+        [HttpGet]
         public IList<ContratoViewModel> ObterContratos()
         {
             return new List<ContratoViewModel>

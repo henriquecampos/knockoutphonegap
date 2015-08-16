@@ -11,16 +11,14 @@ using System.Net;
 
 namespace WebApi.Controllers
 {
-    [Authorize]
     [RoutePrefix("Conta")]
     public class ContaController : ApiController
     {
         // POST Conta/Entrar
         [Route("Entrar")]
-        [AllowAnonymous]
         public IHttpActionResult Entrar(LoginViewModel login)
         {
-            if (login.Email != "admin@admin.com" || login.Senha == "123456")
+            if (login.Email != "admin@admin.com" || login.Senha != "123456")
                 return StatusCode(HttpStatusCode.Forbidden);
 
             var claims = new List<Claim>();
@@ -32,6 +30,7 @@ namespace WebApi.Controllers
 
         // POST Conta/Sair
         [Route("Sair")]
+        [Authorize]
         public IHttpActionResult Sair()
         {
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);

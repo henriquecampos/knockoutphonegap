@@ -1,9 +1,15 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-    <div>Content goes here.</div>
-</body>
-</html>
+﻿<h3 ng-hide="ctrl.contratos">Loading...</h3>
+<table class="table table-hover" ng-hide="!ctrl.contratos">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tipo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="contrato in ctrl.contratos">
+            <td>{{contrato.Id}}</td>
+            <td>{{contrato.Tipo}}</td>
+        </tr>
+    </tbody>
+</table>

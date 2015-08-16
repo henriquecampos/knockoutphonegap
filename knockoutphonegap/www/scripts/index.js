@@ -10,12 +10,12 @@
         })
         .config(function ($routeProvider) {
             $routeProvider.when("/login", {
-                controller: "LoginController",
+                controller: "LoginController as login",
                 templateUrl: "/views/login.html"
             });
 
             $routeProvider.when("/contratos", {
-                controller: "ContratosController",
+                controller: "ContratosController as ctrl",
                 templateUrl: "/views/contratos.html"
             });
 
