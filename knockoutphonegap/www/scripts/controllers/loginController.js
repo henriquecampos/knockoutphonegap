@@ -1,28 +1,23 @@
 ﻿(function () {
     'use strict';
-    angular.module("AngularAuthApp.controllers").controller('LoginController', ['authService', '$location', 'localStorage', LoginController]);
+    angular.module("AngularAuthApp.controllers").controller('LoginController', LoginController);
 
-    /**
-     * Controller for the login.
-     * 
-     * @param {!angular.Service} storage
-     * @constructor
-     * @export
-     */
     function LoginController(authService, $location, localStorage) {
         this.authService = authService;
+        authService.usuarioLogado = null;
+
         this.location = $location;
-        this.localStorage = localStorage;
-        this.autenticacao = {
-            Email: localStorage.obterUsuario(),
-            Senha: "123456"
-        }
+
+        var autenticacao = localStorage.obterAutenticacao() || {};
+        autenticacao.Senha = "";
+        localStorage.salvarAutenticacao(autenticacao);
+
+        this.autenticacao = autenticacao;
     }
 
     LoginController.prototype.entrar = function () {
         var _this = this;
         this.authService.entrar(this.autenticacao).then(function (response) {
-            _this.localStorage.salvarUsuario(_this.autenticacao.Email);
             _this.location.path('/contratos');
         }, function (rejection) {
             alert(rejection.status);

@@ -23,5 +23,19 @@ namespace WebApi.Controllers
                 new ContratoViewModel { Id = 2, Tipo = "PJ", Data = DateTime.Now.AddYears(-3) }
             };
         }
+
+        [Route("html")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult Html()
+        {
+            var contratos = new List<ContratoViewModel>
+            {
+                new ContratoViewModel { Id = 1, Tipo = "CLT", Data = DateTime.Now.AddYears(-2) },
+                new ContratoViewModel { Id = 2, Tipo = "PJ", Data = DateTime.Now.AddYears(-3) }
+            };
+
+            return HtmlActionResult.Build("contratos", contratos);
+        }
     }
 }

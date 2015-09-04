@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('AngularAuthApp.services').service('contratosService', ['$http', 'apiUrl', ContratosService]);
+    angular.module('AngularAuthApp.services').service('contratosService', ContratosService);
 
     function ContratosService($http, apiUrl) {
         this.http = $http;

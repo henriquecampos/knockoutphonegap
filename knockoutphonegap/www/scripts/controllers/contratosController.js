@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    angular.module("AngularAuthApp.controllers").controller('ContratosController', ['contratosService', ContratosController]);
+    angular.module("AngularAuthApp.controllers").controller('ContratosController', ContratosController);
 
     function ContratosController(contratosService) {
         this.contratosService = contratosService;
@@ -13,4 +13,9 @@
             _this.contratos = response.data;
         });
     };
+
+    ContratosController.prototype.atualizar = function () {
+        this.contratos = undefined;
+        this.obterContratos();
+    }
 })();
